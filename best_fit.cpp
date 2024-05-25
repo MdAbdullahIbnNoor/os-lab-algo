@@ -1,63 +1,59 @@
-#include<conio.h>
-#include<iostream>
+#include <iostream>
 using namespace std;
-int main()
-{
-    int i,j,k,n,l,m[10],p[10],po[20],flag,z,y,temp,temp1;
-    cout<<"enter memory partition:\t";
-    cin>>n;
-    cout<<"\nenter memory size for\n";
-    for(i=1; i<=n; i++)
-    {
-        cout<<"\npartition "<<i<<" :\t";
-        cin>>m[i];
-        po[i]=i;
+
+int main() {
+    int i, j, k, n, l, m[10], p[10], po[20], flag, z, y, temp, temp1;
+
+    cout << "Enter number of memory partitions: ";
+    cin >> n;
+
+    cout << "\nEnter memory size for\n";
+    for (i = 0; i < n; i++) {
+        cout << "Partition " << i + 1 << " : ";
+        cin >> m[i];
+        po[i] = i + 1;
     }
-    cout<<"\nenter process:\t";
-    cin>>j;
-    cout<<"\nenter memory size for\n";
-    for(i=1; i<=j; i++)
-    {
-        cout<<"\nprocess "<<i<<" :\t";
-        cin>>p[i];
+
+    cout << "\nEnter number of processes: ";
+    cin >> j;
+
+    cout << "\nEnter memory size for\n";
+    for (i = 0; i < j; i++) {
+        cout << "Process " << i + 1 << " : ";
+        cin >> p[i];
     }
-    //calculation
-    for(y=1; y<=n; y++)
-    {
-        for(z=y; z<=n; z++)
-        {
-            if(m[y]>m[z])
-            {
-                temp=m[y];
-                m[y]=m[z];
-                m[z]=temp;
-                temp1=po[y];
-                po[y]=po[z];
-                po[z]=temp1;
+
+    // Sorting memory partitions and keeping track of original indices
+    for (y = 0; y < n; y++) {
+        for (z = y + 1; z < n; z++) {
+            if (m[y] > m[z]) {
+                temp = m[y];
+                m[y] = m[z];
+                m[z] = temp;
+
+                temp1 = po[y];
+                po[y] = po[z];
+                po[z] = temp1;
             }
         }
     }
-    for(i=1; i<=j; i++)
-    {
-        flag=1;
-        for(k=1; k<=n; k++)
-        {
-            if(p[i]<=m[k])
-            {
-                cout<<"\nprocess "<<i<<" whose memory size is "<<p[i]<<"KB allocated at memory partition:  "<<po[k];
-                m[k]=m[k]-p[i];
+
+    // Allocation
+    for (i = 0; i < j; i++) {
+        flag = 0;
+        for (k = 0; k < n; k++) {
+            if (p[i] <= m[k]) {
+                cout << "\nProcess " << i + 1 << " whose memory size is " << p[i] << "KB allocated at memory partition: " << po[k];
+                m[k] -= p[i];
                 break;
-            }
-            else
-            {
+            } else {
                 flag++;
             }
         }
-        if(flag>n)
-        {
-            cout<<"\nprocess "<<i<<" whose memory size is "<<p[i]<<"KB can't be allocated";
+        if (flag == n) {
+            cout << "\nProcess " << i + 1 << " whose memory size is " << p[i] << "KB can't be allocated";
         }
     }
-    getch();
-    return 0;
+
+    return 0;
 }

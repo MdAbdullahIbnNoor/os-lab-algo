@@ -1,4 +1,5 @@
 #include <stdio.h>
+
 int main() {
     // Matrix for storing Process Id, Arrival Time, Burst Time, Waiting Time & Turn Around Time.
     int A[100][5];
@@ -81,5 +82,5 @@ int main() {
     printf("Average Waiting Time = %f", avg_wt);
     printf("\nAverage Turnaround Time = %f", avg_tat);
 
-    return 0;
+    return 0;
 }

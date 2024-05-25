@@ -7,7 +7,7 @@ int main() {
     int i, j, n, total = 0, index, temp;
     float avg_wt, avg_tat;
 
-    cout << "Enter number of process: ";
+    cout << "Enter number of processes: ";
     cin >> n;
 
     cout << "Enter Burst Time:" << endl;
@@ -18,7 +18,7 @@ int main() {
         A[i][0] = i + 1;
     }
 
-    // Sorting process according to their Burst Time.
+    // Sorting processes according to their Burst Time.
     for (i = 0; i < n; i++) {
         index = i;
         for (j = i + 1; j < n; j++)
@@ -56,5 +56,7 @@ int main() {
 
     avg_tat = (float)total / n;
     cout << "Average Waiting Time= " << avg_wt << endl;
-    cout << "Average Turnaround Time= " << avg_tat << endl;
+    cout << "Average Turnaround Time= " << avg_tat << endl;
+
+    return 0;
 }
